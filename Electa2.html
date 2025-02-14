@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electa - ECE Association</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .header-logo {
+            width: 180px;
+            height: auto;
+        }
+
+        #toggle-button {
+            background: none;
+            color: white;
+            text-shadow: 0px 0px 10px white;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .About-section {
+            margin-left: 20px;
+        }
+
+        .About-section p {
+            text-align: justify;
+            padding: 3px;
+            margin-right: 5px;
+        }
+
+        .About-section h2 {
+            color: #ffd700;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            padding-top: 80px;
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        .sidebar-menu.show {
+            right: 0;
+        }
+
+        .menu li {
+            list-style: none;
+            margin: 15px 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 20px;
+            display: block;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content Slider */
+        .swiper {
+            width: 90%;
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            background: #000000;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .slide-image {
+            flex: 1;
+            max-width: 550px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .text-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .text-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+     /* Changed from justify to left */
+            line-height: 1.6; /* Improved line spacing */
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff9900, #ff6600);
+            color: black;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .cta-button a{
+            text-decoration: none;
+            color: black;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .swiper-pagination {
+            padding-bottom: 106px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: #111;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .social-links {
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateX(10px);
+        }
+
+        .social-link img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .social-link a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px;
+            background: #4e2e17;
+            border-radius: 10px;
+        }
+
+        .footer-logo {
+            width: 70px;
+            height: 50px;
+        }
+
+        .accreditation {
+            text-align: center;
+        }
+
+        .naac-badge {
+            width: 60px;
+            height: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .slide-content {
+                gap: 30px;
+            }
+
+            .text-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-logo {
+                width: 140px;
+            }
+
+            .swiper {
+                margin-top: 80px;
+            }
+
+            .slide-content {
+                flex-direction: column;
+            }
+
+            .slide-image {
+                max-width: 100%;
+            }
+
+            .text-content {
+                 /* Changed from justify to left */
+                padding: 0;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-logo {
+                width: 120px;
+            }
+
+            .text-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .social-link {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="background-image: url(./IMG_2329.JPG);">
+        <header>
+            <img src="IMG_20250209_152257.png" alt="Electa Logo" class="header-logo" style="width: 200px;">
+            <button id="toggle-button">☰</button>
+            <nav class="sidebar-menu" id="Home">
+                <ul class="menu">
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Events">Events</a></li>
+                    <li><a href="#Contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header><br><br><br><br>
+        <!-- About-section -->
+        <div class="About-section" id="About">
+            <h2>About</h2>
+            <p>ELECTA, the Electronics and Communication Technical Association, is a vibrant community of innovators and enthusiasts dedicated to exploring, developing, and sharing knowledge in the realms of electronics and communication engineering.</p>
+        </div>
+        <div class="swiper mySwiper" id="Events">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="electa front1.jpg" alt="ELECTA">
+                        </div>
+                        <div class="text-content">
+                            <h2>ELECTA Inauguration</h2>
+                            <p>We are thrilled to announce the Inaugural Ceremony of ELECTA 2K24 on August 23, which was followed by a technical talk on embedded systems by Bit Builders. The event began with a prayer to set a solemn tone for the proceedings. Abhinand A S, President of ELECTA, delivered the welcome address, outlining the association's vision and goals for the year ahead. Mr. Shaji, the Academic Director of the college, followed with his presidential address, emphasizing the importance of student associations for personal and professional growth.</p>
+                            <button class="cta-button"><a href="http://127.0.0.1:5500/electa3.html">Click Here</a></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="pcb.jpg" alt="PCB Workshop">
+                        </div>
+                        <div class="text-content">
+                            <h2>PCB Fabrication and Designing</h2>
+                            <p>ELECTA invites 1st-year ECE students to a 1-day hands-on training session on PCB design and fabrication on November 16, 2024. The students of the first year got a platform to sharpen their skills. The aim of the program was to introduce the students to basic electronic circuit components and tools. The program was conducted by Abhinand A S, Nijin S S, Aswin Biju, and Vaishnav H. Build smarter, design better—join us for an immersive PCB fabrication experience.</p>
+                            <button class="cta-button"><a href="http://127.0.0.1:5500/elcta4.html">Click Here</a></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="elexa.jpg" alt="ELEXA">
+                        </div>
+                        <div class="text-content">
+                            <h2>ELEXA</h2>
+                            <p>ELEXA 2K25 is the premier tech fest organized by the Electronics and Communication Engineering Department, showcasing cutting-edge innovations and exciting competitions. The events are planned in such a way that students from different colleges can compete and participate, showcasing their talents and gaining experience. ELEXA, in association with VEGA 2K25, is happening on February 20. Join us and be a part of this electrifying journey into the future of technology.</p>
+                            <button class="cta-button"><a href="http://127.0.0.1:5500/electa5.html">Click Here</a></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="ardiuno.jpg" alt="Arduino">
+                        </div>
+                        <div class="text-content">
+                            <h2>Arduino Workshop</h2>
+                            <p>Join us for an exciting Arduino Workshop at ELEXA, where innovation meets hands-on learning! Whether you're a beginner or an electronics enthusiast, this workshop will introduce you to the world of embedded systems and open-source hardware. Learn how to program and interface sensors, motors, and displays using Arduino, and bring your ideas to life with real-time projects. Don't miss this opportunity to dive into the world of microcontrollers and automation—register now and start building the future with Arduino.</p>
+                            <button class="cta-button"><a href="http://127.0.0.1:5500/electa%20font%20page.html">Click Here</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div><br><br><br><br>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="social-links" id="Contact">
+            <h2 style="text-align: center;">Contact Us</h2>
+            <div class="social-link">
+                <img src="IMG_20250207_173922 - Copy.png" alt="Instagram">
+                <a href="https://instagram.com/ft.hawala" target="_self">ft.hawala</a>
+            </div>
+            <div class="social-link">
+                <img src="IMG_20250207_173922 - Copy.png" alt="Instagram">
+                <a href="https://instagram.com/electa.ece" target="_self">electa.ece</a>
+            </div>
+            <div class="social-link">
+                <img src="IMG_20250207_173922 - Copy.png" alt="Instagram">
+                <a href="https://instagram.com/ieeesb_vasttc"  target="_self">ieeesb_vasttc</a>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <img src="IMG_20250207_173948.png" alt="Vidya Academy" class="footer-logo">
+            <div class="accreditation">
+                <h4>Vidya Academy of Science & Technology</h4>
+                <h4>Technical Campus, Killimanoor</h4>
+                <p>A Unit of Vidya International Charitable Trust</p>
+                <p style="color: #ffd700;">Accredited by NAAC with 'B++' Grade</p>
+            </div>
+            <img src="IMG_20250208_103025.png" alt="NAAC Accreditation" class="naac-badge">
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle sidebar
+            const toggleButton = document.getElementById('toggle-button');
+            const sidebar = document.querySelector('.sidebar-menu');
+
+            toggleButton.addEventListener('click', () => {
+                sidebar.classList.toggle('show');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !toggleButton.contains(e.target)) {
+                    sidebar.classList.remove('show');
+                }
+            });
+
+            // Initialize Swiper
+            new Swiper('.mySwiper', {
+                loop: true,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                keyboard: true,
+                effect: 'slide',
+                speed: 800
+            });
+        });
+    </script>
+</body>
+</html>

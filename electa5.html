@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elexa Tech Fest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background: #000;
+    overflow-x: hidden;
+}
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: url('https://source.unsplash.com/1600x900/?technology,abstract') no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: -1;
+}       
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: black;
+            padding: 15px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f4a261;
+        }
+        #hero {
+    text-align: center;
+    padding: 150px 20px;
+    background: linear-gradient(135deg, #1e1e1e, #5c5c5c);
+    background-image: url(./sky.jpg);
+}
+
+#hero h2 {
+    font-size: 48px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+/* Events Section */
+#events {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.event {
+    width: 300px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+    color: white;
+}
+
+.event:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px cyan,0px 0px 20px cyan;
+}
+
+        /* Mobile Toggle Button */
+        .menu-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: #333;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+        @media (max-width: 1200px) {
+    .navbar-logo img {
+        width: 250px;
+        margin-right: auto;
+    }
+    
+    .navbar-subtitle {
+        margin-right: 800px;
+    }
+    
+    nav ul {
+        margin-right: 20px;
+    }
+    
+    #hero h2 {
+        font-size: 40px;
+    }
+    
+    .event {
+        width: 280px;
+    }
+    
+    .event h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-logo {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .navbar-subtitle {
+        display: none;
+    }
+    
+    header nav {
+        display: none;
+    }
+    
+    #hero {
+        padding: 120px 20px;
+    }
+    
+    .event-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Event detail sections */
+    div[id$="neon"], div[id$="ronix"], div[id$="kioski"], 
+    div[id$="byte"], div[id$="clash"], div[id$="riot"], 
+    div[id$="ideathon"], div[id$="bug"], div[id$="espark"], 
+    div[id$="board"], div[id$="poster"], div[id$="electric"], 
+    div[id$="virtual"], div[id$="green"] {
+        margin: 0 50px !important;
+    }
+    
+    div[id$="neon"] h1, div[id$="ronix"] h1, 
+    div[id$="kioski"] h1, div[id$="byte"] h1, 
+    div[id$="clash"] h1, div[id$="riot"] h1, 
+    div[id$="ideathon"] h1, div[id$="bug"] h1, 
+    div[id$="espark"] h1, div[id$="board"] h1, 
+    div[id$="poster"] h1, div[id$="electric"] h1, 
+    div[id$="virtual"] h1, div[id$="green"] h1 {
+        font-size: 40px !important;
+    }
+    
+    div[id$="neon"] img, div[id$="ronix"] img, 
+    div[id$="kioski"] img, div[id$="byte"] img, 
+    div[id$="clash"] img, div[id$="riot"] img, 
+    div[id$="ideathon"] img, div[id$="bug"] img, 
+    div[id$="espark"] img, div[id$="board"] img, 
+    div[id$="poster"] img, div[id$="electric"] img, 
+    div[id$="virtual"] img, div[id$="green"] img {
+        width: 100% !important;
+        max-width: 600px !important;
+        height: auto !important;
+    }
+    
+    div[id$="neon"] h2, div[id$="ronix"] h2, 
+    div[id$="kioski"] h2, div[id$="byte"] h2, 
+    div[id$="clash"] h2, div[id$="riot"] h2, 
+    div[id$="ideathon"] h2, div[id$="bug"] h2, 
+    div[id$="espark"] h2, div[id$="board"] h2, 
+    div[id$="poster"] h2, div[id$="electric"] h2, 
+    div[id$="virtual"] h2, div[id$="green"] h2 {
+        margin: 20px 0 !important;
+        font-size: 1.1em !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-logo img {
+        width: 200px;
+    }
+    
+    #hero h2 {
+        font-size: 32px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+    }
+    
+    .event-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .event {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    /* Adjust event detail sections */
+    div[id$="neon"], div[id$="ronix"], div[id$="kioski"], 
+    div[id$="byte"], div[id$="clash"], div[id$="riot"], 
+    div[id$="ideathon"], div[id$="bug"], div[id$="espark"], 
+    div[id$="board"], div[id$="poster"], div[id$="electric"], 
+    div[id$="virtual"], div[id$="green"] {
+        margin: 0 30px !important;
+    }
+    
+    div[id$="neon"] h1, div[id$="ronix"] h1, 
+    div[id$="kioski"] h1, div[id$="byte"] h1, 
+    div[id$="clash"] h1, div[id$="riot"] h1, 
+    div[id$="ideathon"] h1, div[id$="bug"] h1, 
+    div[id$="espark"] h1, div[id$="board"] h1, 
+    div[id$="poster"] h1, div[id$="electric"] h1, 
+    div[id$="virtual"] h1, div[id$="green"] h1 {
+        font-size: 32px !important;
+        text-align: center !important;
+    }
+    
+    div[id$="ronix"] img, div[id$="byte"] img, 
+    div[id$="riot"] img, div[id$="bug"] img, 
+    div[id$="board"] img {
+        float: none !important;
+        margin: 0 auto !important;
+    }
+    
+    div[id$="neon"] h2, div[id$="ronix"] h2, 
+    div[id$="kioski"] h2, div[id$="byte"] h2, 
+    div[id$="clash"] h2, div[id$="riot"] h2, 
+    div[id$="ideathon"] h2, div[id$="bug"] h2, 
+    div[id$="espark"] h2, div[id$="board"] h2, 
+    div[id$="poster"] h2, div[id$="electric"] h2, 
+    div[id$="virtual"] h2, div[id$="green"] h2 {
+        margin: 15px 0 !important;
+        font-size: 1em !important;
+    }
+    
+    footer .vidya {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    footer .vidya img {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-logo img {
+        width: 180px;
+    }
+    
+    #hero h2 {
+        font-size: 28px;
+    }
+    
+    #hero p {
+        font-size: 0.9em;
+    }
+    
+    .event {
+        padding: 15px;
+    }
+    /* Final mobile adjustments */
+    div[id$="neon"], div[id$="ronix"], div[id$="kioski"], 
+    div[id$="byte"], div[id$="clash"], div[id$="riot"], 
+    div[id$="ideathon"], div[id$="bug"], div[id$="espark"], 
+    div[id$="board"], div[id$="poster"], div[id$="electric"], 
+    div[id$="virtual"], div[id$="green"] {
+        margin: 0 15px !important;
+    }
+    
+    div[id$="neon"] h1, div[id$="ronix"] h1, 
+    div[id$="kioski"] h1, div[id$="byte"] h1, 
+    div[id$="clash"] h1, div[id$="riot"] h1, 
+    div[id$="ideathon"] h1, div[id$="bug"] h1, 
+    div[id$="espark"] h1, div[id$="board"] h1, 
+    div[id$="poster"] h1, div[id$="electric"] h1, 
+    div[id$="virtual"] h1, div[id$="green"] h1 {
+        font-size: 24px !important;
+    }
+    
+    .image-container {
+        max-width: 80%;
+    }
+    
+    .text-overlay {
+        font-size: 20px;
+    }
+    
+    .highlight {
+        font-size: 24px;
+    }
+}
+#about p{
+    text-align: justify;
+    margin-right: 10px;
+}
+html{
+    scroll-behavior: smooth;
+}
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+}
+#about{
+    margin-left: 20px;
+}
+.social-link {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    justify-content: center; 
+}
+
+.social-link img {
+    width: 30px;  
+    height: auto;
+}
+
+.social-link a {
+    text-decoration: none;
+    color:white;  
+    font-size: 16px; 
+}
+.navbar-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+.navbar-logo img {
+    width: 300px; 
+}
+
+.navbar-subtitle {
+    font-size: 10px; 
+    font-weight: bold;
+    color: white;
+    margin-top: -5px; 
+    letter-spacing: 1px; 
+    margin-right: 1090px;
+}
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.social-links p {
+    margin: 5px 0; 
+}
+
+.full-width-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.vidya{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4e2e17;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+}
+.logo, .naac-logo{
+    height: 60px;
+}
+.text-container{
+    text-align: center;
+    flex-grow: 1;
+}
+h5,h4{
+    margin: 5px 0; 
+    font-family: Arial, sans-serif;
+}
+.naac{
+    color: #ffd700;
+    font-weight: bold;
+}
+span{
+    font-weight: bold;
+}
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px black;
+}
+
+.highlight {
+    color: yellow;
+    font-size: 28px;
+}
+.highlight a{
+    text-decoration: none;
+    color: orange;
+}
+.highlight a:hover{
+    color: yellow;
+}
+.event a{
+    text-decoration: none;
+    color: white;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo"><img src="logo1.jpg" width="200px" alt=""></div>
+        <button class="menu-toggle">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Event</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="hero">
+        <h2 style="color: white;text-shadow: 0px 0px 10px cyan,0px 0px 20px;">Welcome to ELEXA  2K25</h2>
+        <p>The Ultimate Electronics & Communication Tech Fest</p>
+        <a href="#events" class="btn">Explore Events</a>
+    </section>
+    <section id="about">
+        <h2>About ELEXA  2K25</h2>
+        <p>ELEXA  2K25 is the premier tech fest organized by the Electronics and Communication Engineering Department, showcasing cutting-edge innovations and exciting competitions.</p>
+    </section>
+    
+    <!-- Events Section -->
+    <section id="events">
+        <h2>Exciting Events</h2>
+        <div class="event-container">
+            <div class="event"><a href="#neon">
+                <h3>Neon & Photon</h3>
+                <p>Two interactive robots welcoming visitors with AI-driven movements.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#ronix">
+                <h3>AI Ronix</h3>
+                <p>A stunning robotics exhibition in collaboration with Unique World Robotics.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#kioski">
+                <h3>Kioski and Display System</h3>
+                <p>A stunning robotics exhibition in collaboration with Unique World Robotics.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#byte">
+                <h3>Bytebuzz</h3>
+                <p>A thrilling quiz with buzzers and immersive lighting effects.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#clash">
+                <h3>Electroclash</h3>
+                <p>Showcase your robot’s combat and speed in our thrilling competitions.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#riot">
+                <h3>RC Riot</h3>
+                <p>Race against the best in our RC car track challenge.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#ideathon">
+                <h3>Ideathon</h3>
+                <p>Turn your electronic dreams into reality and compete to be the ultimate innovator.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#bug">
+                <h3>Bugbusting</h3>
+                <p>Decode, debug, and dominate in this electrifying circuit challenge.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#espark">
+                <h3>E-spark</h3>
+                <p>Ignite your imagination and pitch groundbreaking ideas to win big.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#board">
+                <h3>Board Builders</h3>
+                <p>Master the art of PCB design and build the future, one board at a time.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#poster">
+                <h3>Poster Competition</h3>
+                <p>Visualize the future of communication and bring your ideas to life.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#electric">
+                <h3>ElectriFy</h3>
+                <p>Explore innovative projects created by our talented students.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#virtual">
+                <h3>Virtual Reality Experience</h3>
+                <p>Immerse yourself in VR to explore the fest interactively.</p>
+            </a>
+            </div>
+            <div class="event"><a href="#green">
+                <h3>Green wheels</h3>
+                <p>Discover the latest in electric vehicle technology.</p>
+            </a>
+            </div>
+        </div>
+    </section>
+    <div style="background-image: url(./IMG_2329.JPG);">
+        <div style="margin-left: 100px;" id="neon" >
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white;">NEON AND PHOTON</h1>
+           <img src="IMG_20250207_173826.png" width="800px">
+           <h2 style="text-align: justify;margin-right: 900px;color: rgb(216, 216, 62)">Two Interactive robots will be placed in the corridor of our department floor to welcome visitors. These robots will be programmed to tollow individuals for a few steps before returning to their original positions, creating an engaging and futuristic experience for attendees. They will enhance the technological appeal of the event while demonstrating robotics and automation concepts</h2>
+        </div>
+        <div style="margin-right: 100px;" id="ronix">
+           <h1 style="font-size: 60px; text-align: right;text-shadow: 0px 0px 10px white">AI RONIX</h1>
+           <img src="IMG_20250207_173743.png" width="400px" style="display: block;margin-left: auto;width: 400px;float: inline-end;" alt="">
+           <h2 style="text-align: justify;margin-left: 500px; display: flex;color: rgb(216, 216, 62);margin-top: 230px;">A Robo Expo is setted at the lobby in asoosiation with UNIQUE WORLD ROBOTICS with defferent types of robots.The versatile and innovative robotic kit that offers a wide range of capabilities and modes of operation with powerful AI features,high computing power,and modular design. </h2>
+       </div>
+       <div style="margin-left: 100px;margin-top: 200px;" id="kioski" >
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">KIOSKI AND DISPLAY SYSTEM</h1>
+           <img src="IMG_20250207_173617.png" width="600px" style="float: inline-start;"><br><br><br><br><br>
+           <h2 style="text-align: justify;margin-right: 400px;color: rgb(216, 216, 62)">A kiosk will be set up to provide detailed information about the tech fest, including event schedules and highlights from the Electronics and Communication Engineering department. Additionally, a display monitor will showcase visuals of various projects, innovations, and activities happening on our department floor, offering an immersive experience for visitors.</h2>
+        </div>
+        <div style="margin-right: 100px;" id="byte">
+           <h1 style="font-size: 60px; text-align: right;text-shadow: 0px 0px 10px white">BYTEBUZZ</h1>
+           <img src="quiz.jpg" width="600px" style="display: block;margin-left: auto;width: 500px;" alt="">
+           <h2 style="text-align: justify;margin-left: 900px; display: flex;color: rgb(216, 216, 62)">A dedicated quiz room will be set up with buzzers and ambient lighting tocreate an exciting and competitive atmosphere. Participants will engage in a technical quiz covering various topics related to electronics and communication. The event aims to test knowledge, encourage teamwork, and enhance learning in a fun and Interactive manner. Prize money will be awarded to the winners as a token of appreciation for their excellence.</h2>
+       </div>
+       <div style="margin-left: 100px;" id="clash">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">ELECTROCLASH</h1>
+           <img src="IMG_20250207_173856.png" width="600px" style="float: inline-start;"><br><br><br><br><br>
+           <h2 style="text-align: justify;margin-right: 400px;color: rgb(216, 216, 62)">A thrilling Robo War and Line Follower Race competition will be organized, open to all participants who wish to compete with their own robots. The Robo War will test the strength and strategy strategy of robots in a controlled battle. while the Line Follower Race will I challenge the precision and speed of autonomous robots following a predefined path. Cash prizes will be awarded to the winners. Our team will provide the necessary facilities and arena for the event, ensuring a fair and exciting competition.</h2>
+        </div>
+        <div style="margin-right: 100px;" id="riot">
+           <h1 style="font-size: 60px; text-align: right;text-shadow: 0px 0px 10px white">RC RIOT</h1>
+           <img src="IMG_20250207_173542.png" width="800px" style="display: block;margin-left: auto;width: 700px;float: inline-end;" alt="">
+           <h2 style="text-align: justify;margin-left: 300px; display: flex;color: rgb(216, 216, 62);margin-top: 200px;">Get ready for the ultimate battle of speed and skill! The Inter College RC Car Racing Competition brings together the fastest RC cars and the sharpest minds from colleges across the region. Compete, innovate, and race your way to victory!
+               Fine-tune your RC cars, push the limits, and race for the CASH PRIZE! Will you claim the top spot.</h2>
+       </div>
+       <div style="margin-left: 100px;" id="ideathon">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">IDEATHONE</h1>
+           <img src="IMG_20250209_123233_029.jpg" width="400px" style="float: inline-start;"><br><br><br><br><br>
+           <h2 style="text-align: justify;margin-right: 400px; margin-left: 470px;color: rgb(216, 216, 62)">Showcase your creativity by designing an innovative electronic project. Compete with the best minds and bring your ideas to life. Push the boundaries of technology and innovation in this project-based competition. Present your electronic marvel and get recognized as the ultimate tech innovator. Build, innovate, and compete because the future belongs to creators like you.</h2>
+        </div>
+        <div style="margin-right: 100px;" id="bug">
+           <h1 style="font-size: 60px; text-align: right;text-shadow: 0px 0px 10px white">BUGBUSTING</h1>
+           <img src="IMG_20250209_155020.png" width="600px" style="display: block;margin-left: auto;width: 600px;float: inline-end;" alt="">
+           <h2 style="text-align: justify;margin-left: 300px; display: flex;color: rgb(216, 216, 62);margin-top: 160px;">Test your circuit debugging skills and prove you can fix what others can't. Crack the code, troubleshoot the flaws, and emerge as the ultimate bug buster! Sharpen your problem-solving skills with this electrifying debugging challenge. Identify, analyze, and debug this competition is all about precision and speed! Every circuit has a flaw can you be the one to fix it faster than anyone else.</h2>
+       </div>
+       <div style="margin-left: 100px;" id="espark">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">E-SPARK</h1>
+           <img src="IMG_20250209_123822_945.jpg" width="400px" style="float: inline-start;"><br><br><br><br><br>
+           <h2 style="text-align: justify;margin-right: 400px; margin-left: 470px; color: rgb(216, 216, 62)">Got an innovative idea Pitch it and let it shine! Your imagination is the limit present your groundbreaking concepts. Transform bold ideas into reality and compete for the best innovation award. Spark creativity, think outside the box, and impress the judges with your vision. Innovation starts with an idea bring yours to life and make an impact.</h2>
+        </div>
+        <div style="margin-right: 100px;" id="board">
+           <h1 style="font-size: 60px; text-align: right;text-shadow: 0px 0px 10px white">BOARD BUILDERS</h1>
+           <img src="IMG_20250209_154946.png" width="600px" style="display: block;margin-left: auto;width: 600px;float: inline-end;" alt=""><br><br><br>
+           <h2 style="text-align: justify;margin-left: 300px; display: flex;color: rgb(216, 216, 62)">Step into the world of PCB designing and enhance your technical skills. From schematics to fabrication learn it all in this hands-on workshop! Turn circuits into reality by mastering the art of PCB design. Join the workshop and take your electronics expertise to the next level. Design, develop, and debug build your own printed circuit board with ease.</h2>
+       </div>
+       <div style="margin-left: 100px;margin-top: 200px;" id="poster">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">POSTER COMPETITION</h1>
+           <img src="IMG_20250209_155041.png" width="600px" style="float: inline-start;">
+           <h2 style="text-align: justify;margin-right: 400px;color: rgb(216, 216, 62);margin-top: 200px;">Express your vision of the future through powerful visual storytelling. Design stunning posters and showcase your creativity on ‘Next Gen Communication Systems.’ Let art and technology collide in this innovative poster making challenge! Transform ideas into visuals and make your message stand out! A picture speaks a thousand words let yours shape the future of communication.</h2>
+        </div>
+       <div style="margin-left: 100px;margin-top: 200px;" id="electric">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">ELECTRIFY</h1>
+           <h2 style="text-align: justify;margin-right: 900px;color: rgb(216, 216, 62)">A dedicated room will showcase various working projects developed by ECE students. Each project will be displayed with detailed descriptions, explaining its functionality, innovation, and real-world applications. This exhibition will provide visitors with insights into the technical expertise and creativity of our students while encouraging knowledge sharing and discussions.</h2>
+        </div>
+        <div style="margin-left: 110px;" id="virtual">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">VR</h1>
+           <h2 style="text-align: justify;margin-right: 900px;color: rgb(216, 216, 62)">An VR will be set up in the corridor to enhance the visitor experience. This interactive guide will provide detailed information about the tech fest, department highlights, and event locations, offering a seamless and engaging way for attendees to navigate the fest. The virtual guide service will be available with a payment option for those who wish to access additional features or personalized assistance.</h2>
+        </div>
+        <div style="margin-left: 100px;" id="green">
+           <h1 style="font-size: 60px;text-shadow: 0px 0px 10px white">GREEN WHEELS</h1>
+           <img src="IMG_20250207_173703.png" width="800px">
+           <h2 style="text-align: justify;margin-right: 900px;color: rgb(216, 216, 62)">An Electric Vehicle (EV) Exhibition will be organized on the ground, showcasing cutting-edge electric vehicles from leading brands such as Mahindra, Tata, M6, and more. This exhibition will provide visitors with Insights into the latest advancements in electric mobility, sustainable transportation, and innovative automotive technologies. Attendees will have the opportunity to explore these vehicles up close and learn about their features, performance, and environmental impact</h2>
+        </div>
+       </div>
+       <div style="background-image: url(./IMG_2329.JPG); height: 1150px;" id="Registration-background">
+        <img src="IMG_20250207_173948.png" width="100px" alt="" style="margin-left:20px; margin-top: 20px;">
+        <br><br>
+      <div class="image-container">
+        <img src="IMG_20250208_184009.jpg" style="margin-top: 60px;" alt="">
+        <div class="text-overlay">
+     <h1><strong>For Registration</strong></h1>   
+     <h1 class="highlight"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdToYqgELCwKZYm0bZebwMQV3Re7e-RFccsjVSSfUSMyzSgjw/viewform?usp=header" target="_self">Click Here</a></h1>
+     </div>
+     </div>
+    </div><br>
+      <!-- Contact Section -->
+      <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information, reach out to us at,</p>
+        <div class="social-link">
+        <img src="IMG_20250207_173922.png" width="30px" alt="">
+        <a href="https://www.instagram.com/ft.hawala?igsh=MzVjODZ4eGF0MGJ6"  target="_self">ft.hawala</a>
+    </div><br>
+    <div class="social-link">
+        <img src="IMG_20250207_173922.png" width="30px" alt="">
+        <a href="https://www.instagram.com/electa.ece?igsh=dWNkYnZldzllcTh3"  target="_self">electa.ece</a>
+    </div><br>
+    <div class="social-link" style="margin-left: 35px;">
+        <img src="IMG_20250207_173922.png" width="30px" alt="">
+        <a href="https://www.instagram.com/ieeesb_vasttc?igsh=Yjh1ZWJveXR3aDgy"  target="_self">ieeesb_vasttc</a>
+    </div> <br><br><br>
+    <div class="vidya">
+        <img src="IMG_20250207_173948.png" width="80px" height="50px" alt="" class="logo">
+        <div class="text-container"><h4>Vidya Academy of Science and Technology</h4>
+         <h4>Technical Campus ,Killimanoor</h4>
+         <h5>A Unit of Vidya International Charitable Trust</h5>
+         <h5 class="naac">ACCREDITED BY <span>NAAC</span><span> WITH <b> "B++" GRADE</b></span></h5>   
+        </div>
+        <img src="IMG_20250208_103025.png" width="70px" height="50px" class="naac-logo">
+    </div>
+       </footer><br>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.querySelector(".menu-toggle");
+            const navLinks = document.querySelector(".nav-links");
+
+            toggleButton.addEventListener("click", function () {
+                navLinks.classList.toggle("show");
+            });
+        });
+    </script>
+
+</body>
+</html>

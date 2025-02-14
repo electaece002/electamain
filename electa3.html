@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electa Inauguration</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            height: 80px;
+            padding: 1rem 5%;
+            background: rgb(17, 17, 17);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color:white;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e26969d2 0%, #5706f0 100%);
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .welcome h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 10%;
+            background: #fff;
+        }
+
+        .about h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #666;
+            text-align: justify;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 5%;
+            background: #f9f9f9;
+        }
+
+        .gallery h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 10%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+        }
+
+        .social-links a {
+            color: #333;
+            font-size: 2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff6b6b;
+        }
+        .social-links span{
+            margin-bottom: 8px;
+        }
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;           
+        }
+        .full-width-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.vidya{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+}
+.logo, .naac-logo{
+    height: 60px;
+}
+.text-container{
+    text-align: center;
+    flex-grow: 1;
+}
+.naac{
+    color: #ffd700;
+    font-weight: bold;
+}
+span{
+    font-weight: bold;
+}    
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color:black;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: right 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .welcome h1 {
+                font-size: 2.5rem;
+            }
+        }
+        .mobile-menu-btn{
+         color: white;
+         font-size: 25px;
+        }
+        .navbar img{
+            width: 150px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="logo1.jpg" alt="Electa Logo" class="logo">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="mobile-menu-btn">☰</div>
+    </nav>
+
+    <section class="welcome" id="home">
+        <h1 data-aos="fade-up">Electa Inauguration</h1>
+    </section>
+
+    <section class="about" id="about" data-aos="fade-up">
+        <h2>About</h2>
+        <p>On 23rd August 2024, the "ELECTA" association's inauguration and technical talk were held. The event began with a prayer to set a solemn tone for the proceedings. Abhinad A S, President of "ELECTA," delivered the welcome address, outlining the association's vision
+            and goals for the year ahead. Mr. Shaji, theAccademic Director of the college, followed with his Presidential address, emphasizing the importance of student associations for personal and professional growth.Dr. Jayaranjini N, Head of the Electronics and Communication Engineering Department, provided the inaugural address, highlighting the role of such
+            associations in bridging academic knowledge with practical applications. The felicitation segment honored key individuals, including Ms.Anjana N from the ECE faculty, Mubeena, Joint Secretary of "ELECTA," and Sonu S, Vice President of "ELECTA," for their contributions.Nijin S S, Secretary of the association, delivered the vote of thanks, expressing
+            gratitude to all attendees and contributors. The event concluded with a technical talk by Mr. Gokul,CEO of Bit Builders who presented on contemporary topics in electronics and
+            communication engineering, offering valuable insights and enhancing the attendees' knowledge. Overall, the inauguration and technical talk were successfully conducted, marking a
+            promising start for "ELECTA" and encouraging active student involvement in its future activities.</p>
+    </section>
+
+    <section class="gallery" data-aos="fade-up">
+        <h2>Event highlight</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-aos="zoom-in">
+                <img src="electa ina4.jpg" alt="Gallery Image 1">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="electa ina1.jpg" alt="Gallery Image 2">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="electa ina2.jpg" alt="Gallery Image 3">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="electa ina3.jpg" alt="Gallery Image 3">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ft.hawala?igsh=MzVjODZ4eGF0MGJ6" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <span style="text-decoration: none;font-size: 20px;">ft.hawala</span> </a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/electa.ece?igsh=dWNkYnZldzllcTh36" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <span style="text-decoration: none;font-size: 20px;">electa.ece</span> </a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ieeesb_vasttc?igsh=Yjh1ZWJveXR3aDgy" target="_self">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <span style="text-decoration: none;font-size: 20px;">ieeesb_vasttc</span> </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="vidya">
+            <img src="IMG_20250207_173948.png" width="80px" height="50px" alt="" class="logo">
+            <div class="text-container"><h4>Vidya Academy of Science and Technology</h4>
+             <h4>Technical Campus ,Killimanoor</h4>
+             <h5>A Unit of Vidya International Charitable Trust</h5>
+             <h5 class="naac">ACCREDITED BY <span>NAAC</span><span> WITH <b> "B++" GRADE</b></span></h5>   
+            </div>
+            <img src="IMG_20250208_103025.png" width="70px" height="50px" class="naac-logo">
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
