@@ -40,12 +40,8 @@
         }
 
         @keyframes bounce {
-            0%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
         }
 
         /* First place styling */
@@ -279,6 +275,7 @@
             color: white;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.5s ease;
+            z-index: 3;
         }
 
         @keyframes slideUp {
@@ -321,8 +318,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="loading-dots">
             <span>.</span>
@@ -331,14 +326,11 @@
         </div>
     </div>
 
-    <!-- Rest of the content -->
     <button class="menu-icon" onclick="openMenu()">☰</button>
-
     <div class="menu-overlay" id="menuOverlay">
         <button class="close-menu" onclick="closeMenu()">✖</button>
-        <a href="#">National</a>
-        <a href="#">Club</a>
-        <a href="#">Live Scores</a>
+        <a href="javascript:void(0)" onclick="closeMenu(); window.location.reload()">Home</a>
+        <a href="https://electaece002.github.io/electamain/" onclick="closeMenu()">Electa</a>
     </div>
 
     <div class="container">
@@ -353,15 +345,13 @@
         </div>
     </div>
 
-    <button id="togglePanel" onclick="showAdminLogin()">⚙</button>
-
+    <button id="togglePanel" onclick="showAdminLogin()">⚙️</button>
     <div id="adminLogin">
         <button class="close-admin" onclick="document.getElementById('adminLogin').style.display='none'">❌</button>
         <h3>Admin Login</h3>
         <input type="password" id="password" placeholder="Enter Password">
         <button onclick="checkPassword()">Login</button>
     </div>
-
     <div id="updatePanel">
         <h3>Admin Panel</h3>
         <input type="text" id="name" placeholder="Racer Name">
@@ -370,8 +360,28 @@
         <button class="clear-all" onclick="clearAll()">Clear All</button>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <script>
-        // Simulate loading delay
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCiHANl62j5eJeJY3tlLiMhp8UZKeQaENY",
+            authDomain: "rc-leaderboard.firebaseapp.com",
+            databaseURL: "https://rc-leaderboard-default-rtdb.firebaseio.com",
+            projectId: "rc-leaderboard",
+            storageBucket: "rc-leaderboard.appspot.com",
+            messagingSenderId: "12304984592",
+            appId: "1:12304984592:web:393988a07c263ea88d3895",
+            measurementId: "G-W9CJMZTMKK"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Loading sequence
         setTimeout(() => {
             document.getElementById('loading-screen').style.opacity = '0';
             setTimeout(() => {
@@ -382,35 +392,46 @@
         let racers = [];
 
         function loadData() {
-            const savedData = localStorage.getItem('racers');
-            if (savedData) {
-                racers = JSON.parse(savedData);
+            database.ref('racers').on('value', (snapshot) => {
+                racers = [];
+                snapshot.forEach((childSnapshot) => {
+                    const racer = childSnapshot.val();
+                    racers.push(racer);
+                });
+                racers.sort((a, b) => a.time - b.time);
                 updateLeaderboard();
-            }
+            });
         }
 
-        function saveData() {
-            localStorage.setItem('racers', JSON.stringify(racers));
+        function addRacer() {
+            const name = document.getElementById("name").value;
+            const time = parseFloat(document.getElementById("time").value);
+
+            if (name && !isNaN(time)) {
+                database.ref('racers').push({ name, time })
+                    .then(() => {
+                        document.getElementById("updatePanel").style.display = "none";
+                    })
+                    .catch(error => console.error("Error adding racer:", error));
+            }
         }
 
         function clearAll() {
-            if (confirm("Are you sure you want to clear all racers?")) {
-                racers = [];
-                localStorage.removeItem('racers');
-                updateLeaderboard();
+            if (confirm("Clear all racers?")) {
+                database.ref('racers').remove()
+                    .catch(error => console.error("Error clearing data:", error));
             }
         }
 
-        function openMenu() {
-            document.getElementById("menuOverlay").style.display = "flex";
-        }
-
-        function closeMenu() {
-            document.getElementById("menuOverlay").style.display = "none";
-        }
-
-        function showAdminLogin() {
-            document.getElementById("adminLogin").style.display = "block";
+        function updateLeaderboard() {
+            const tbody = document.getElementById("leaderboardBody");
+            tbody.innerHTML = racers.map((racer, index) => `
+                <tr${index === 0 ? ' class="first-place"' : ''}>
+                    <td>${index + 1}</td>
+                    <td>${racer.name}</td>
+                    <td>${racer.time.toFixed(2)}</td>
+                </tr>`
+            ).join('');
         }
 
         function checkPassword() {
@@ -420,40 +441,11 @@
             }
         }
 
-        function addRacer() {
-            let name = document.getElementById("name").value;
-            let time = parseFloat(document.getElementById("time").value);
-
-            if (!name || isNaN(time)) {
-                alert("Please enter valid details.");
-                return;
-            }
-
-            racers.push({ name, time });
-            racers.sort((a, b) => a.time - b.time);
-
-            updateLeaderboard();
-            saveData();
-            document.getElementById("updatePanel").style.display = "none";
-        }
-
-        function updateLeaderboard() {
-            let tbody = document.getElementById("leaderboardBody");
-            tbody.innerHTML = "";
-
-            racers.forEach((racer, index) => {
-                const isFirst = index === 0;
-                tbody.innerHTML += `
-                    <tr${isFirst ? ' class="first-place"' : ''}>
-                        <td>${index + 1}</td>
-                        <td>${racer.name}</td>
-                        <td>${racer.time.toFixed(2)}</td>
-                    </tr>`;
-            });
-        }
+        function openMenu() { document.getElementById("menuOverlay").style.display = "flex"; }
+        function closeMenu() { document.getElementById("menuOverlay").style.display = "none"; }
+        function showAdminLogin() { document.getElementById("adminLogin").style.display = "block"; }
 
         window.onload = loadData;
     </script>
-
 </body>
 </html>
